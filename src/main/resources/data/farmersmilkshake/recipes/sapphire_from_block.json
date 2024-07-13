@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "farmersmilkshake:sapphire_block"
+    }
+  ],
+  "result": {
+    "item": "farmersmilkshake:sapphire",
+    "count": 9
+  }
+}
