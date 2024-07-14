@@ -1,5 +1,6 @@
 package net.lilkahuna.farmersmilkshake.item;
 
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
@@ -27,15 +28,15 @@ public class OreDetectorItem extends Item{
                 BlockState state = pContext.getLevel().getBlockState(positionClicked.below(i));
 
                 if (isValuableBlock(state)) {
-                    outputValuableCoordinates(positionClicked.below(i), player, state.getBlock());
+                    outputValuableCoordinates(state.getBlock(), pContext.getPlayer());
                     foundBlock = true;
 
                     break;
                 }
             }
-
+            
             if(!foundBlock) {
-                player.sendSystemMessage(Component.literal("Found nothing, you suck!"));
+                player.sendSystemMessage(Component.literal("Found nothing"));
             }
         }
 
@@ -44,8 +45,8 @@ public class OreDetectorItem extends Item{
         return InteractionResult.SUCCESS;
     }
 
-    private void outputValuableCoordinates(BlockPos blockPos, Player player, Block block) {
-        player.sendSystemMessage(Component.literal("Found Ore"));
+    private void outputValuableCoordinates(Block block, Player player) {
+        player.sendSystemMessage(Component.literal("Found " + I18n.get(block.getDescriptionId())));
     }
 
     private boolean isValuableBlock(BlockState state) {
